@@ -1,91 +1,64 @@
-```css
-/*
- * This CSS file customizes the appearance of Firefox.
- * It includes rules for:
- * - Making tabs square and active/inactive tabs the same color.
- * - Making various toolbars and the sidebar transparent.
- * - Hiding specific UI elements like window controls, urlbar icons, and back/forward buttons.
- * - Customizing tab appearance (icon centering, close button opacity).
- * - Setting custom fonts for the urlbar and app menu.
- * - Shortening tab titles to 4-5 characters.
- * - Making favicons monochrome with color on hover.
- *
- * To use this:
- * 1. Open about:config in Firefox.
- * 2. Search for toolkit.legacyUserProfileCustomizations.stylesheets and set it to true.
- * 3. Open your Firefox profile folder (about:profiles will show you the path).
- * 4. Create a folder named 'chrome' inside your profile folder if it doesn't exist.
- * 5. Create a file named userChrome.css inside the 'chrome' folder.
- * 6. Paste the code below into userChrome.css.
- * 7. Restart Firefox.
- */
-
-/* === Variables === */
+/* === RESET & BASE === */
 :root {
-    --tab-min-height: 25px !important;
+    /* Consistent timing for all transitions */
+    --transition-duration: 0.25s;
+    --transition-easing: ease-out;
+    
+    /* Typography */
+    --mono-font-stack: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
+    
+    /* Spacing */
+    --tab-character-width: 5ch; /* Responsive character-based width */
+    --extension-button-width: 12px; /* Compromise between minimal and usable */
 }
 
-/* === General Tab Styling === */
-/* Remove border-radius from tabs to make them square */
-#tabbrowser-tabs .tabbrowser-tab {
-    border-radius: 0 !important;
-    margin-bottom: 0 !important; /* Adjust margin if needed */
-    margin-top: 0 !important; /* Adjust margin if needed */
-}
-
-/* Remove extra space below tabs */
+/* Remove default margins and borders from key elements */
+#tabbrowser-tabs .tabbrowser-tab,
+#tabbrowser-tabs .tabbrowser-tab .tab-background,
 #TabsToolbar {
-    margin-bottom: 0 !important;
-}
-
-/* Style the tab background for both active and inactive tabs to be transparent */
-/* This makes active and non-active tabs have the same background color */
-.tab-background {
-    background-color: transparent !important;
-    color: var(--foreground) !important; /* Assuming --foreground is defined elsewhere or inherited */
-    font-family: 'JetBrains Mono', monospace !important;
-    box-shadow: none !important;
-}
-
-/* Ensure the background extends to the corners (redundant with border-radius: 0 but can be left for clarity) */
-#tabbrowser-tabs .tabbrowser-tab .tab-background {
     border-radius: 0 !important;
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
+    margin: 0 !important;
 }
 
-/* === Toolbar and Window Styling === */
-/* Hide MIN MAX CLOSE buttons */
-#TabsToolbar > .titlebar-buttonbox-container {
-    visibility: collapse !important;
+/* === TRANSPARENCY LAYER === */
+/* Main window and toolbox transparency */
+#main-window,
+#navigator-toolbox,
+#nav-bar,
+#PersonalToolbar {
+    background-color: transparent !important;
+    border: none !important;
 }
 
-/* Make sidebar transparent */
-#sidebar-main, #sidebar-box {
+/* Remove navigator toolbox border */
+#navigator-toolbox {
+    border-bottom: none !important;
+}
+
+/* Remove nav bar top border */
+#nav-bar {
+    border-top: none !important;
+}
+
+/* Sidebar transparency */
+#sidebar-main, 
+#sidebar-box {
     background-color: transparent !important;
     background-image: none !important;
 }
 
-/* Make navigator toolbox transparent and remove border */
-#navigator-toolbox {
+/* Tab background styling - unified for active/inactive */
+.tab-background {
     background-color: transparent !important;
-    border-bottom: none !important;
+    color: var(--foreground, inherit) !important;
+    font-family: var(--mono-font-stack) !important;
+    box-shadow: none !important;
 }
 
-/* Make main window transparent */
-#main-window {
-    background-color: transparent !important;
-}
-
-/* Make personal toolbar transparent */
-#PersonalToolbar {
-    background-color: transparent !important;
-}
-
-/* Make nav bar transparent and remove top border */
-#nav-bar {
-    border-top: none !important;
-    background-color: transparent !important;
+/* === HIDDEN UI ELEMENTS === */
+/* Hide window controls */
+#TabsToolbar > .titlebar-buttonbox-container {
+    visibility: collapse !important;
 }
 
 /* Hide titlebar spacer */
@@ -93,19 +66,37 @@
     display: none !important;
 }
 
-/* === Icon and Button Hiding === */
-/* Hide address bar icons by default, show on hover */
+/* Hide navigation buttons */
+#back-button,
+#forward-button {
+    display: none !important;
+}
+
+/* === TYPOGRAPHY === */
+/* URL bar font styling */
+#urlbar-input, 
+.urlbarView-url {
+    font-family: var(--mono-font-stack) !important;
+}
+
+/* App menu font */
+#appMenu-popup {
+    font-family: var(--mono-font-stack) !important;
+}
+
+/* === SMART INTERACTIONS === */
+/* Address bar icons - hidden by default, show on hover */
 #star-button-box,
 #alltabs-button,
 #picture-in-picture-button,
 #reader-mode-button,
 #translations-button {
     opacity: 0 !important;
-    transition: opacity 0.3s ease !important;
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
     pointer-events: none !important;
 }
 
-/* Show address bar icons when hovering over the URL bar */
+/* Show address bar icons on URL bar hover */
 #urlbar:hover #star-button-box,
 #urlbar:hover #alltabs-button,
 #urlbar:hover #picture-in-picture-button,
@@ -115,110 +106,92 @@
     pointer-events: auto !important;
 }
 
-/* Remove forward/back buttons */
-#back-button,
-#forward-button {
-    display: none !important;
-}
-
-/* === Font Styling === */
-/* default menu font for urlbar */
-#urlbar-input, .urlbarView-url{
-    font-family: "JetBrains Mono", "Bitstream Vera Sans Mono", "Andale Mono", FreeMono, Kode Mono !important;
-}
-
-/* Font for app menu */
-#appMenu-popup {
-    font-family: "JetBrains Mono", "Bitstream Vera Sans Mono", "Andale Mono", FreeMono, Kode Mono !important;
-}
-
-/* === Tab Content Alignment === */
-/* Center tab icon */
+/* === TAB STYLING === */
+/* Tab icon centering */
 .tab-icon-stack {
     margin-inline-start: auto;
 }
 
-/* Make favicons monochrome */
+/* Monochrome favicons with smooth color transition */
 .tab-icon-image {
     filter: grayscale(100%) brightness(0.8) contrast(1.2) !important;
-    transition: filter 0.2s ease !important;
+    transition: filter var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Optional: Show color favicons on hover */
+/* Color favicons on tab hover */
 .tabbrowser-tab:hover .tab-icon-image {
     filter: grayscale(0%) brightness(1) contrast(1) !important;
 }
 
-/* Shorten tab titles to 4-5 characters */
-.tab-label-container {
-    max-width: 40px !important; /* Adjust width for 4-5 characters */
-    margin-inline-end: auto;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-}
-
-/* Hide text overflow without ellipsis for clean look */
+/* Responsive tab title truncation using character units */
+.tab-label-container,
 .tab-label {
+    max-width: var(--tab-character-width) !important;
     overflow: hidden !important;
-    text-overflow: clip !important;
     white-space: nowrap !important;
-    max-width: 40px !important;
+    text-overflow: clip !important;
 }
 
-/* === Extension Button Styling === */
-#unified-extensions-button {
-    width: 2px !important;
-    padding-inline: 0 !important;
+.tab-label-container {
+    margin-inline-end: auto;
 }
 
-#unified-extensions-button > .toolbarbutton-icon {
-    width: 0 !important;
+/* === TAB CLOSE BUTTONS === */
+/* Base state - hidden for inactive tabs */
+.tabbrowser-tab:not(:hover):not([selected]) .tab-close-button {
+    opacity: 0 !important;
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
+    display: -moz-box !important;
 }
 
-/* === Tab Close Button Styling === */
-/* X-button on the tabs (not hovered) */
-.tabbrowser-tab:not(:hover) .tab-close-button {
-    opacity: 0% !important;
-    transition: opacity 0.3s !important; /* Specify property for transition */
-    display: -moz-box !important; /* Firefox specific display */
+/* Selected tab - slightly visible */
+.tabbrowser-tab[selected]:not(:hover) .tab-close-button {
+    opacity: 0.4 !important;
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
+    display: -moz-box !important;
 }
 
-/* X-button on selected tabs (not hovered) */
-.tab-close-button[selected]:not(:hover) {
-    opacity: 45% !important;
-    transition: opacity 0.3s !important; /* Specify property for transition */
-    display: -moz-box !important; /* Firefox specific display */
-}
-
-/* X-button on hovered tabs */
+/* Tab hover - more visible */
 .tabbrowser-tab:hover .tab-close-button {
-    opacity: 50% !important;
-    transition: opacity 0.3s !important; /* Specify property for transition */
+    opacity: 0.6 !important;
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
     background: none !important;
-    cursor: pointer;
-    display: -moz-box !important; /* Firefox specific display */
+    display: -moz-box !important;
 }
 
-/* X-button on hovered close button itself */
+/* Close button direct hover - fully visible */
 .tab-close-button:hover {
-    opacity: 100% !important;
-    transition: opacity 0.3s !important; /* Specify property for transition */
+    opacity: 1 !important;
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
     background: none !important;
     cursor: pointer;
-    display: -moz-box !important; /* Firefox specific display */
+    display: -moz-box !important;
 }
 
-/* X-button on hovered selected close button */
-.tab-close-button[selected]:hover {
-    opacity: 100% !important;
-    transition: opacity 0.3s !important; /* Specify property for transition */
-    background: none !important;
-    cursor: pointer;
-    display: -moz-box !important; /* Firefox specific display */
+/* === EXTENSION BUTTON IMPROVEMENT === */
+/* Better extension button - still minimal but more accessible */
+#unified-extensions-button {
+    width: var(--extension-button-width) !important;
+    padding-inline: 2px !important;
+    opacity: 0.3 !important;
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
+    border-radius: 2px !important;
 }
 
-/* === Urlbar Styling === */
-/* Make address bar fully transparent */
+/* Show extension button more clearly on hover */
+#unified-extensions-button:hover {
+    opacity: 0.8 !important;
+    background-color: rgba(128, 128, 128, 0.1) !important;
+}
+
+/* Keep icon minimal but visible */
+#unified-extensions-button > .toolbarbutton-icon {
+    width: 8px !important;
+    opacity: 0.7 !important;
+}
+
+/* === URL BAR TRANSPARENCY === */
+/* Complete URL bar transparency */
 #urlbar {
     --toolbar-field-background-color: transparent !important;
     --toolbar-field-border-color: transparent !important;
@@ -227,13 +200,13 @@
     box-shadow: none !important;
 }
 
-/* Make the actual input field transparent too */
+/* URL bar input field transparency */
 #urlbar-input {
     background-color: transparent !important;
     border: none !important;
 }
 
-/* Remove any focus styling that might add background */
+/* URL bar focus state - maintain transparency */
 #urlbar:focus-within {
     --toolbar-field-background-color: transparent !important;
     --toolbar-field-border-color: transparent !important;
@@ -242,11 +215,46 @@
     box-shadow: none !important;
 }
 
-/* === Content Area Styling === */
-/* Remove the white line around the content window */
+/* === CONTENT AREA CLEANUP === */
+/* Remove content window outline (for sidebar revamp) */
 @media (-moz-bool-pref: "sidebar.revamp") {
     #tabbrowser-tabbox {
         outline: none !important;
         box-shadow: none !important;
     }
+}
+
+/* === RESPONSIVE CONSIDERATIONS === */
+/* Ensure tab functionality on smaller screens */
+@media (max-width: 768px) {
+    :root {
+        --tab-character-width: 3ch; /* Shorter tabs on mobile */
+        --extension-button-width: 16px; /* Larger touch target */
+    }
+}
+
+/* High DPI / zoom considerations */
+@media (min-resolution: 2dppx) {
+    .tab-icon-image {
+        image-rendering: -moz-crisp-edges;
+    }
+}
+
+/* === ACCESSIBILITY IMPROVEMENTS === */
+/* Ensure sufficient contrast for tab labels */
+.tab-label {
+    color: inherit !important;
+    text-shadow: none !important;
+}
+
+/* Focus indicators for keyboard navigation */
+.tabbrowser-tab:focus-visible {
+    outline: 1px solid rgba(128, 128, 128, 0.5) !important;
+    outline-offset: -1px !important;
+}
+
+/* Ensure extension button is keyboard accessible */
+#unified-extensions-button:focus-visible {
+    outline: 1px solid rgba(128, 128, 128, 0.7) !important;
+    outline-offset: 1px !important;
 }
