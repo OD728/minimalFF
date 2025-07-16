@@ -1,5 +1,8 @@
 # Firefox Minimal Theme
 
+![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 A clean, minimalist Firefox theme that transforms your browser into a distraction-free, transparent interface. This `userChrome.css` configuration creates a seamless browsing experience with reduced visual clutter and a modern aesthetic.
 
 ![Firefox Minimal Theme Screenshot](screenshot.png)
@@ -231,101 +234,6 @@ user_pref("accessibility.force_disabled", 1);
 ```
 </details>
 
-## 📋 Changelog
-
-### v2.0.0 - Enhanced Minimal Experience *(Latest)*
-
-#### **🎯 Major Improvements**
-
-**Better User Experience**
-- **Enhanced Extension Button**: Increased width from 2px to 12px with subtle hover effects for better accessibility
-- **Responsive Tab Sizing**: Switched from fixed `40px` to character-based `5ch` units that scale with font size and zoom
-- **Mobile Optimization**: Added responsive breakpoints with shorter `3ch` tabs on screens under 768px
-- **Keyboard Navigation**: Added focus indicators for better accessibility compliance
-
-**Performance & Code Quality**
-- **Consolidated CSS**: Eliminated redundant declarations and organized code into logical sections
-- **Consistent Transitions**: Unified all animations to `0.25s ease-out` for smoother, more professional interactions
-- **CSS Variables**: Introduced custom properties for easier customization and maintenance
-- **Optimized Selectors**: Improved CSS efficiency and reduced specificity conflicts
-
-**Enhanced Typography**
-- **Modern Font Stack**: Updated fallback chain with `ui-monospace`, `SF Mono`, `Consolas`, and other system fonts
-- **Cross-Platform Support**: Better font rendering across Windows, macOS, and Linux
-- **High DPI Ready**: Added support for high-resolution displays and zoom levels
-
-**Responsive Design**
-- **Adaptive Layout**: Theme now responds to screen size changes and browser zoom
-- **Touch-Friendly**: Larger interactive areas on mobile devices
-- **Zoom Compatibility**: Elements scale properly at different zoom levels
-
-#### **🔧 Technical Enhancements**
-
-**Code Architecture**
-- **Modular Structure**: Organized CSS into clear sections (Reset, Transparency, Typography, Interactions, etc.)
-- **Variable System**: Centralized customization through CSS custom properties
-- **Better Comments**: Comprehensive documentation for each section and feature
-
-**Accessibility Improvements**
-- **Focus Indicators**: Visible focus states for keyboard users
-- **Color Contrast**: Better text visibility considerations
-- **Screen Reader**: Improved semantic structure for assistive technologies
-
-#### **⚡ Performance Optimizations**
-- **Reduced CSS Overhead**: Eliminated redundant rules and improved selector efficiency
-- **Transition Optimization**: Consistent timing reduces browser rendering work
-- **Memory Efficiency**: Better CSS organization reduces parsing time
-
-### v1.0.0 - Initial Release
-
-**Original Features**
-- Transparent interface with square tabs
-- Hidden UI elements for minimal design
-- Smart hover effects and monochrome favicons
-- JetBrains Mono typography
-- Short tab titles and smooth transitions
-
-#### **🔄 Migration Guide: v1.0 → v2.0**
-
-**Tab Width Customization** *(Changed)*
-```css
-/* Old method (v1.0) */
-.tab-label-container { max-width: 40px !important; }
-
-/* New method (v2.0) */
-:root { --tab-character-width: 5ch; }
-```
-
-**Extension Button** *(Improved)*
-The extension button is now more accessible while maintaining the minimal aesthetic. Adjust width if needed:
-```css
-:root { --extension-button-width: 12px; }
-```
-
-## 🎯 Key Features Summary
-
-- ✅ **Transparent Everything**: Complete see-through interface
-- ✅ **Responsive Tab Titles**: Character-based sizing that adapts to screen size
-- ✅ **Monochrome Favicons**: Grayscale with color on hover
-- ✅ **Hidden UI Elements**: Minimal visual clutter
-- ✅ **Hover-Reveal**: Icons appear when needed
-- ✅ **Modern Typography**: Enhanced font stack with cross-platform support
-- ✅ **Smooth Animations**: Consistent, professional transitions
-- ✅ **Accessible Design**: Focus indicators and keyboard navigation
-- ✅ **Mobile Optimized**: Responsive breakpoints for smaller screens
-- ✅ **Theme Ecosystem**: Perfect with Firefox Color & Catppuccin
-- ✅ **Windows Integration**: Enhanced with MicaForEveryone
-- ✅ **Cross-Platform**: Works on Windows, macOS, and Linux
-
-## 🖥️ Compatibility
-
-- **Firefox Version**: Works with modern Firefox versions (100+)
-- **Operating Systems**: Cross-platform (Windows, macOS, Linux)
-- **Dependencies**: Requires `toolkit.legacyUserProfileCustomizations.stylesheets` preference
-- **Windows Enhancement**: MicaForEveryone for perfect transparency
-- **Mobile Support**: Responsive design adapts to smaller screens
-- **High DPI**: Optimized for high-resolution displays
-
 ## ⚠️ Notes
 
 - This theme relies on Firefox's legacy user stylesheet feature
@@ -336,16 +244,6 @@ The extension button is now more accessible while maintaining the minimal aesthe
 - **Best Results**: Combine with MicaForEveryone (Windows), Firefox Color, and Catppuccin for the ultimate minimal experience
 - **Extension Access**: The extension button is now more accessible with improved visibility and hover effects
 
-## 🤝 Contributing
-
-Feel free to fork this theme and customize it to your needs. Pull requests for improvements and bug fixes are welcome.
-
-### **Community Feedback**
-Have suggestions or issues? We'd love to hear from you:
-- **Performance**: Report any slowdowns or rendering issues
-- **Accessibility**: Share feedback on usability improvements
-- **Customization**: Request new customization options
-- **Compatibility**: Report issues with specific Firefox versions or add-ons
 
 ## 📝 License
 
@@ -354,5 +252,3 @@ This theme is provided as-is for personal use. Customize and distribute freely.
 ---
 
 **Enjoy your minimal Firefox experience!** 🦊✨
-
-*💡 **Tip**: Use `Ctrl+Shift+R` (or `Cmd+Shift+R` on Mac) to hard refresh Firefox after updating your `userChrome.css` to ensure all changes take effect properly.*
