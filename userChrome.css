@@ -3,237 +3,202 @@
     /* Consistent timing for all transitions */
     --transition-duration: 0.25s;
     --transition-easing: ease-out;
-    
+
     /* Typography */
-    --mono-font-stack: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
-    
+    --mono-font-stack: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas,
+    'Liberation Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
+
     /* Spacing */
-    --tab-character-width: 5ch; /* Responsive character-based width */
-    --extension-button-width: 12px; /* Compromise between minimal and usable */
+    --tab-character-width: 5ch;          /* Character-based tab width */
+    --extension-button-width: 12px;      /* Balance between minimal & usable */
 }
 
-/* Remove default margins and borders from key elements */
+/* Remove default margins and borders */
 #tabbrowser-tabs .tabbrowser-tab,
 #tabbrowser-tabs .tabbrowser-tab .tab-background,
 #TabsToolbar {
-    border-radius: 0 !important;
-    margin: 0 !important;
+border-radius: 0 !important;
+margin: 0 !important;
 }
 
-/* Remove navigator toolbox border */
-#navigator-toolbox {
-    border-bottom: none !important;
-}
-
-/* Remove nav bar top border */
-#nav-bar {
-    border-top: none !important;
-}
+/* Remove toolbox and navbar borders */
+#navigator-toolbox { border-bottom: none !important; }
+#nav-bar { border-top: none !important; }
 
 /* Sidebar transparency */
-#sidebar-main, 
+#sidebar-main,
 #sidebar-box {
-    background-color: transparent !important;
-    background-image: none !important;
+background-color: transparent !important;
+background-image: none !important;
 }
 
-/* Tab background styling - unified for active/inactive */
+/* Unified tab background */
 .tab-background {
     background-color: transparent !important;
-    color: var(--foreground, inherit) !important;
+    color: inherit !important;
     font-family: var(--mono-font-stack) !important;
     box-shadow: none !important;
 }
 
 /* === HIDDEN UI ELEMENTS === */
-/* Hide window controls */
-#TabsToolbar > .titlebar-buttonbox-container {
-    visibility: collapse !important;
-}
+/* Window controls */
+#TabsToolbar > .titlebar-buttonbox-container { display: none !important; }
 
-/* Hide titlebar spacer */
-.titlebar-spacer {
-    display: none !important;
-}
+/* Titlebar spacer */
+.titlebar-spacer { display: none !important; }
 
-/* Hide navigation buttons */
+/* Navigation buttons */
 #back-button,
 #forward-button {
-    display: none !important;
+display: none !important;
 }
 
 /* === TYPOGRAPHY === */
-/* URL bar font styling */
-#urlbar-input, 
+/* URL bar & results */
+#urlbar-input,
 .urlbarView-url {
     font-family: var(--mono-font-stack) !important;
 }
 
-/* App menu font */
+/* App menu */
 #appMenu-popup {
-    font-family: var(--mono-font-stack) !important;
+font-family: var(--mono-font-stack) !important;
 }
 
 /* === SMART INTERACTIONS === */
-/* Address bar icons - hidden by default, show on hover */
+/* Hide address bar icons by default */
 #star-button-box,
 #alltabs-button,
 #picture-in-picture-button,
 #reader-mode-button,
 #translations-button {
-    opacity: 0 !important;
-    transition: opacity var(--transition-duration) var(--transition-easing) !important;
-    pointer-events: none !important;
+opacity: 0 !important;
+pointer-events: none !important;
+transition: opacity var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Show address bar icons on URL bar hover */
+/* Reveal icons on hover or keyboard focus */
 #urlbar:hover #star-button-box,
 #urlbar:hover #alltabs-button,
 #urlbar:hover #picture-in-picture-button,
 #urlbar:hover #reader-mode-button,
-#urlbar:hover #translations-button {
-    opacity: 1 !important;
-    pointer-events: auto !important;
+#urlbar:hover #translations-button,
+#urlbar:focus-within #star-button-box,
+#urlbar:focus-within #alltabs-button,
+#urlbar:focus-within #picture-in-picture-button,
+#urlbar:focus-within #reader-mode-button,
+#urlbar:focus-within #translations-button {
+opacity: 1 !important;
+pointer-events: auto !important;
 }
 
 /* === TAB STYLING === */
-/* Tab icon centering */
-.tab-icon-stack {
-    margin-inline-start: auto;
-}
-
-/* Responsive tab title truncation using character units */
-.tab-label-container,
-.tab-label {
+/* Character-based tab title truncation */
+.tab-label-container {
     max-width: var(--tab-character-width) !important;
     overflow: hidden !important;
-    white-space: nowrap !important;
-    text-overflow: clip !important;
+    margin-inline-end: auto !important;
 }
 
-.tab-label-container {
-    margin-inline-end: auto;
+.tab-label {
+    white-space: nowrap !important;
+    text-overflow: clip !important;
+    color: inherit !important;
+    text-shadow: none !important;
 }
 
 /* === TAB CLOSE BUTTONS === */
-/* Base state - hidden for inactive tabs */
+/* Hidden on inactive tabs */
 .tabbrowser-tab:not(:hover):not([selected]) .tab-close-button {
     opacity: 0 !important;
     transition: opacity var(--transition-duration) var(--transition-easing) !important;
-    display: -moz-box !important;
 }
 
-/* Selected tab - slightly visible */
+/* Subtle on selected tab */
 .tabbrowser-tab[selected]:not(:hover) .tab-close-button {
     opacity: 0.4 !important;
-    transition: opacity var(--transition-duration) var(--transition-easing) !important;
-    display: -moz-box !important;
 }
 
-/* Tab hover - more visible */
+/* Visible on hover */
 .tabbrowser-tab:hover .tab-close-button {
     opacity: 0.6 !important;
-    transition: opacity var(--transition-duration) var(--transition-easing) !important;
     background: none !important;
-    display: -moz-box !important;
 }
 
-/* Close button direct hover - fully visible */
+/* Fully visible when directly hovered */
 .tab-close-button:hover {
     opacity: 1 !important;
-    transition: opacity var(--transition-duration) var(--transition-easing) !important;
     background: none !important;
     cursor: pointer;
-    display: -moz-box !important;
 }
 
-/* === EXTENSION BUTTON IMPROVEMENT === */
-/* Better extension button - still minimal but more accessible */
+/* === EXTENSION BUTTON === */
 #unified-extensions-button {
-    width: var(--extension-button-width) !important;
-    padding-inline: 2px !important;
-    opacity: 0.3 !important;
-    transition: opacity var(--transition-duration) var(--transition-easing) !important;
-    border-radius: 2px !important;
+width: var(--extension-button-width) !important;
+padding-inline: 2px !important;
+opacity: 0.3 !important;
+border-radius: 2px !important;
+transition: opacity var(--transition-duration) var(--transition-easing) !important;
 }
 
-/* Show extension button more clearly on hover */
 #unified-extensions-button:hover {
-    opacity: 0.8 !important;
-    background-color: rgba(128, 128, 128, 0.1) !important;
+opacity: 0.8 !important;
+background-color: rgba(128, 128, 128, 0.1) !important;
 }
 
-/* Keep icon minimal but visible */
 #unified-extensions-button > .toolbarbutton-icon {
-    width: 8px !important;
-    opacity: 0.7 !important;
+width: 8px !important;
+opacity: 0.7 !important;
 }
 
 /* === URL BAR TRANSPARENCY === */
-/* Complete URL bar transparency */
 #urlbar {
-    --toolbar-field-background-color: transparent !important;
-    --toolbar-field-border-color: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+--toolbar-field-background-color: transparent !important;
+--toolbar-field-border-color: transparent !important;
+background-color: transparent !important;
+border: none !important;
+box-shadow: none !important;
 }
 
-/* URL bar input field transparency */
 #urlbar-input {
-    background-color: transparent !important;
-    border: none !important;
-}
-
-/* URL bar focus state - maintain transparency */
-#urlbar:focus-within {
-    --toolbar-field-background-color: transparent !important;
-    --toolbar-field-border-color: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+background-color: transparent !important;
+border: none !important;
 }
 
 /* === CONTENT AREA CLEANUP === */
-/* Remove content window outline (for sidebar revamp) */
+/* Sidebar revamp compatibility */
 @media (-moz-bool-pref: "sidebar.revamp") {
     #tabbrowser-tabbox {
-        outline: none !important;
-        box-shadow: none !important;
+    outline: none !important;
+    box-shadow: none !important;
     }
 }
 
 /* === RESPONSIVE CONSIDERATIONS === */
-/* Ensure tab functionality on smaller screens */
+/* Narrow windows / small screens */
 @media (max-width: 768px) {
     :root {
-        --tab-character-width: 3ch; /* Shorter tabs on mobile */
-        --extension-button-width: 16px; /* Larger touch target */
+        --tab-character-width: 3ch;
+        --extension-button-width: 16px;
     }
 }
 
-/* High DPI / zoom considerations */
+/* High-DPI considerations (harmless fallback) */
 @media (min-resolution: 2dppx) {
     .tab-icon-image {
         image-rendering: -moz-crisp-edges;
     }
 }
 
-/* === ACCESSIBILITY IMPROVEMENTS === */
-/* Ensure sufficient contrast for tab labels */
-.tab-label {
-    color: inherit !important;
-    text-shadow: none !important;
-}
-
-/* Focus indicators for keyboard navigation */
+/* === ACCESSIBILITY === */
+/* Keyboard focus for tabs */
 .tabbrowser-tab:focus-visible {
     outline: 1px solid rgba(128, 128, 128, 0.5) !important;
     outline-offset: -1px !important;
 }
 
-/* Ensure extension button is keyboard accessible */
+/* Keyboard focus for extensions button */
 #unified-extensions-button:focus-visible {
-    outline: 1px solid rgba(128, 128, 128, 0.7) !important;
-    outline-offset: 1px !important;
+outline: 1px solid rgba(128, 128, 128, 0.7) !important;
+outline-offset: 1px !important;
 }
