@@ -1,0 +1,238 @@
+/* === RESET & BASE === */
+:root {
+    /* Consistent timing for all transitions */
+    --transition-duration: 0.25s;
+    --transition-easing: ease-out;
+
+    /* Typography */
+    --mono-font-stack: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas,
+    'Liberation Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
+
+    /* Spacing */
+    --tab-character-width: 5ch;
+    --extension-button-width: 12px;
+
+    /* Tab height */
+    --tab-height: 28px;
+}
+
+/* Remove default margins and borders */
+#tabbrowser-tabs .tabbrowser-tab,
+#tabbrowser-tabs .tabbrowser-tab .tab-background,
+#TabsToolbar {
+border-radius: 0 !important;
+margin: 0 !important;
+}
+
+/* Remove toolbox and navbar borders */
+#navigator-toolbox { border-bottom: none !important; }
+#nav-bar { border-top: none !important; }
+
+/* Sidebar transparency */
+#sidebar-main,
+#sidebar-box {
+background-color: transparent !important;
+background-image: none !important;
+}
+
+/* Unified tab background */
+.tab-background {
+    background-color: transparent !important;
+    color: inherit !important;
+    font-family: var(--mono-font-stack) !important;
+    box-shadow: none !important;
+}
+
+/* Titlebar spacer */
+.titlebar-spacer { display: none !important; }
+
+/* Navigation buttons */
+#back-button,
+#forward-button {
+display: none !important;
+}
+
+/* === TYPOGRAPHY === */
+#urlbar-input,
+.urlbarView-url {
+    font-family: var(--mono-font-stack) !important;
+}
+
+#appMenu-popup {
+font-family: var(--mono-font-stack) !important;
+}
+
+/* === SMART INTERACTIONS === */
+#star-button-box,
+#alltabs-button,
+#picture-in-picture-button,
+#reader-mode-button,
+#translations-button {
+opacity: 0 !important;
+pointer-events: none !important;
+transition: opacity var(--transition-duration) var(--transition-easing) !important;
+}
+
+#urlbar:hover #star-button-box,
+#urlbar:hover #alltabs-button,
+#urlbar:hover #picture-in-picture-button,
+#urlbar:hover #reader-mode-button,
+#urlbar:hover #translations-button,
+#urlbar:focus-within #star-button-box,
+#urlbar:focus-within #alltabs-button,
+#urlbar:focus-within #picture-in-picture-button,
+#urlbar:focus-within #reader-mode-button,
+#urlbar:focus-within #translations-button {
+opacity: 1 !important;
+pointer-events: auto !important;
+}
+
+/* === TAB STYLING === */
+.tab-label-container {
+    max-width: var(--tab-character-width) !important;
+    overflow: hidden !important;
+    margin-inline-end: auto !important;
+}
+
+.tab-label {
+    white-space: nowrap !important;
+    text-overflow: clip !important;
+    color: inherit !important;
+    text-shadow: none !important;
+}
+
+/* Remove active tab border/outline */
+.tabbrowser-tab[selected] .tab-background,
+.tabbrowser-tab[visuallyselected] .tab-background {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* === TAB CLOSE BUTTONS === */
+.tabbrowser-tab:not(:hover):not([selected]) .tab-close-button {
+    opacity: 0 !important;
+    transition: opacity var(--transition-duration) var(--transition-easing) !important;
+}
+
+.tabbrowser-tab[selected]:not(:hover) .tab-close-button {
+    opacity: 0.4 !important;
+}
+
+.tabbrowser-tab:hover .tab-close-button {
+    opacity: 0.6 !important;
+    background: none !important;
+}
+
+.tab-close-button:hover {
+    opacity: 1 !important;
+    background: none !important;
+    cursor: pointer;
+}
+
+/* === EXTENSION BUTTON === */
+#unified-extensions-button {
+width: var(--extension-button-width) !important;
+padding-inline: 2px !important;
+opacity: 0.3 !important;
+border-radius: 2px !important;
+transition: opacity var(--transition-duration) var(--transition-easing) !important;
+}
+
+#unified-extensions-button:hover {
+opacity: 0.8 !important;
+background-color: rgba(128, 128, 128, 0.1) !important;
+}
+
+#unified-extensions-button > .toolbarbutton-icon {
+width: 8px !important;
+opacity: 0.7 !important;
+}
+
+/* === URL BAR TRANSPARENCY === */
+#urlbar {
+--toolbar-field-background-color: transparent !important;
+--toolbar-field-border-color: transparent !important;
+background-color: transparent !important;
+border: none !important;
+box-shadow: none !important;
+}
+
+#urlbar-input {
+background-color: transparent !important;
+border: none !important;
+}
+
+/* === CONTENT AREA CLEANUP === */
+@media (-moz-bool-pref: "sidebar.revamp") {
+    #tabbrowser-tabbox {
+    outline: none !important;
+    box-shadow: none !important;
+    }
+}
+
+/* === RESPONSIVE CONSIDERATIONS === */
+@media (max-width: 768px) {
+    :root {
+        --tab-character-width: 3ch;
+        --extension-button-width: 16px;
+    }
+}
+
+@media (min-resolution: 2dppx) {
+    .tab-icon-image {
+        image-rendering: -moz-crisp-edges;
+    }
+}
+
+/* === ACCESSIBILITY === */
+.tabbrowser-tab:focus-visible {
+    outline: 1px solid rgba(128, 128, 128, 0.5) !important;
+    outline-offset: -1px !important;
+}
+
+#unified-extensions-button:focus-visible {
+outline: 1px solid rgba(128, 128, 128, 0.7) !important;
+outline-offset: 1px !important;
+}
+
+/* === TAB HEIGHT === */
+#TabsToolbar,
+#TabsToolbar .toolbar-items,
+#tabbrowser-tabs,
+#tabbrowser-tabs .tabbrowser-arrowscrollbox {
+padding-block: 0 !important;
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+min-height: 0 !important;
+}
+
+.tabbrowser-tab,
+.tabbrowser-tab .tab-stack,
+.tabbrowser-tab .tab-background,
+.tabbrowser-tab .tab-content {
+    height: var(--tab-height) !important;
+    min-height: var(--tab-height) !important;
+    max-height: var(--tab-height) !important;
+    padding-block: 0 !important;
+}
+
+/* === ADDRESS BAR HEIGHT === */
+#nav-bar,
+#nav-bar .toolbar-items {
+padding-block: 0 !important;
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+min-height: 0 !important;
+}
+
+#urlbar {
+height: 20px !important;
+min-height: 20px !important;
+max-height: 20px !important;
+margin-block: 2px !important;
+}
+
+#urlbar-input {
+font-size: 12px !important;
+}
