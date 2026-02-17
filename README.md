@@ -110,6 +110,7 @@ The extensions button is now more accessible with a 12px width and subtle hover 
 
 ## Notes
 
+- added a 2026 version with some small changes
 - This theme relies on Firefox's legacy user stylesheet feature
 - Some UI elements are intentionally hidden for a minimal aesthetic
 - Window controls can be restored using the recommended add-ons
