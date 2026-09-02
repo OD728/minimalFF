@@ -1,0 +1,37 @@
+/* Titlebar spacer */
+.titlebar-spacer { display: none !important; }
+
+/* Hide back and forward buttons */
+#back-button,
+#forward-button {
+  display: none !important;
+}
+
+/* Hide right-side address bar icons (taskbar tabs, translations, star) */
+#taskbar-tabs-button,
+#translations-button,
+#star-button-box {
+  display: none !important;
+}
+
+/* Rahmen des geöffneten Adressfelds entfernen */
+#urlbar[open] > #urlbar-background,
+#urlbar[open] > .urlbar-background {
+  border: none !important;
+}
+
+/* Complete active tab border removal */
+.tabbrowser-tab[selected] .tab-background,
+.tabbrowser-tab[visuallyselected] .tab-background {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+.tabbrowser-tab[selected] .tab-background::before,
+.tabbrowser-tab[selected] .tab-background::after {
+  display: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
