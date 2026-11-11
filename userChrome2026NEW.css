@@ -1,0 +1,105 @@
+:root {
+    --border-radius-circle: 0px !important;
+    --border-radius-xsmall: 0px !important;
+    --border-radius-small: 0px !important;
+    --border-radius-medium: 0px !important;
+    --border-radius-large: 0px !important;
+    --border-radius-xlarge: 0px !important;
+    --panel-border-radius: 0px !important;
+    --panel-menuitem-border-radius: 0px !important;
+}
+
+/* Titlebar spacer */
+.titlebar-spacer { display: none !important; }
+
+/* Hide back and forward buttons */
+#back-button,
+#forward-button {
+  display: none !important;
+}
+
+/* Hide right-side address bar icons (taskbar tabs, translations, star) */
+#taskbar-tabs-button,
+#translations-button,
+#star-button-box {
+  display: none !important;
+}
+
+/* Rahmen des geöffneten Adressfelds entfernen */
+#urlbar[open] > #urlbar-background,
+#urlbar[open] > .urlbar-background {
+  border: none !important;
+}
+
+/* Complete active tab border removal */
+.tabbrowser-tab[selected] .tab-background,
+.tabbrowser-tab[visuallyselected] .tab-background {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+.tabbrowser-tab[selected] .tab-background::before,
+.tabbrowser-tab[selected] .tab-background::after {
+  display: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+/* ===== Panels, menus, tooltips: square corners + tighter spacing ===== */
+
+/* 1. Square panel and dropdown menu borders */
+panel, menupopup {
+  --panel-border-radius: 0px !important;
+  border-radius: 0px !important;
+}
+
+/* 2. Square tabs */
+.tab-background,
+.tab-stack,
+#tabbrowser-tabs {
+  border-radius: 0px !important;
+}
+
+/* 3. Square hover highlights in bookmark panels, dropdowns, and context menus */
+menu,
+menuitem,
+.menuitem-iconic,
+.bookmark-item,
+panelview .toolbarbutton-1 {
+  border-radius: 0px !important;
+  --arrowpanel-menuitem-border-radius: 0px !important;
+}
+
+/* 4. Square tooltip popups (e.g. URL preview box) */
+tooltip {
+  border-radius: 0px !important;
+}
+
+/* 5. Reduce height and padding of hover highlight items */
+panel menuitem,
+panel .bookmark-item,
+menupopup menuitem,
+menupopup menu {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  min-height: 24px !important;
+}
+
+/* 6. Reduce side padding to tighten horizontal spacing */
+panel menuitem,
+panel .bookmark-item {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}
+
+/* 7. Reduce overall panel popup padding and minimum width */
+panelmultiview,
+.panel-subview-body,
+panel .panel-arrowcontent {
+  padding: 4px !important;
+  min-width: unset !important;
+}
+
+/* Window controls */
+#TabsToolbar > .titlebar-buttonbox-container { display: none !important; }
